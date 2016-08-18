@@ -18,4 +18,13 @@ require_relative 'printingquotes.rb'
 
      expect(console.string).to(include("bonjour"))
    end
+
+   it "prints a second question" do
+     console = StringIO.new("Who said it?")
+     keyboard = StringIO.new()
+
+     described_class.execute_program(console,keyboard)
+
+     expect(console.string).to(include("Who said it?"))
+   end  
   end
