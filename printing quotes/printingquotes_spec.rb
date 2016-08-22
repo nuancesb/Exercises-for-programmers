@@ -1,30 +1,35 @@
 require_relative 'printingquotes.rb'
 
  describe PrintingQuotes do
-   it "prints a question to the user" do
-     console = StringIO.new("What is the quote?")
-     keyboard = StringIO.new("")
+  it "asks for the quote" do
+     console = StringIO.new()
 
-     described_class.execute_program(console,keyboard)
+     described_class.ask_question(console,"What is the quote?")
 
-     expect(console.string).to(include("What is the quote?"))
+     expect(console.string).to eq("What is the quote?\n")
    end
 
-   it "prints bonjour when a user types it " do
-     console = StringIO.new("What is the quote?")
-     keyboard = StringIO.new("bonjour")
+   it "gets the user input for the quote" do
+     keyboard = StringIO.new("viva la fiesta")
 
-     described_class.execute_program(console,keyboard)
-
-     expect(console.string).to(include("bonjour"))
+     expect(described_class.get_user_input(keyboard)).to eq("viva la fiesta")
    end
 
-   it "prints a second question" do
-     console = StringIO.new("Who said it?")
-     keyboard = StringIO.new()
+  it "asks for the author's name" do
+     console = StringIO.new()
 
-     described_class.execute_program(console,keyboard)
+     described_class.ask_question(console,"Who said it?")
 
-     expect(console.string).to(include("Who said it?"))
-   end  
+     expect(console.string).to eq("Who said it?\n")
+   end
+
+  it "runs the program and prints questions and response" do
+   console = StringIO.new()
+   keyboard = StringIO.new("hello\nSophie\n")
+
+   described_class.execute_program(console,keyboard)
+
+   expect(console.string).to eq("What is the quote?\nWho said it?\nSophie says,\"hello\"") 
+
   end
+ end
