@@ -10,10 +10,9 @@ class PrintingQuotes
 
   def self.execute_program(console, keyboard)
     ask_question(console,"What is the quote?")
-   quote =  get_user_input(keyboard)
+    quote = get_user_input(keyboard)
     ask_question(console,"Who said it?")
     author = get_user_input(keyboard)
     console.print author + " says,\"" + quote+ "\""
   end
-
 end
