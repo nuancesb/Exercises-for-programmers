@@ -20,9 +20,9 @@ describe SimpleMath do
   it 'formats input for sum' do
     a = 10
     b = 5
-    total = a + b
+    total_addition = a + b
 
-    result =  described_class.format_response_addition(a,b,total)
+    result =  described_class.add(a, b, total_addition)
 
     expect(result).to eq("10 + 5 = 15")
   end
@@ -33,7 +33,37 @@ describe SimpleMath do
 
     described_class.run(input,output)
 
-    expect(output.string).to eq("What is the first number?\nWhat is the second number?\n10 + 5 = 15\n")
+    expect(output.string).to eq("What is the first number?\nWhat is the second number?\n10 + 5 = 15\n10 - 5 = 5\n10 * 5 = 50\n10.0 / 5 = 2.0\n")
   end
 
+  it "formats input for difference" do
+    a = 10
+    b = 5
+    total_difference = a - b
+
+    result = described_class.substract(a, b, total_difference)
+
+    expect(result).to eq("10 - 5 = 5")
+  end
+
+  it "formats input for multiplication" do
+    a = 10
+    b = 5
+    total_multiplication = a*b
+
+    result = described_class.multiply(a, b, total_multiplication)
+
+    expect(result).to eq("10 * 5 = 50")
+  end
+
+  it "formats input for division" do
+    a = 10
+    b = 5
+    total_division = a.to_f/b
+
+    result = described_class.divide(a, b, total_division)
+
+    expect(result).to eq("10.0 / 5 = 2.0")
+  end
 end
+
